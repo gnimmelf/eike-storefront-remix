@@ -2,11 +2,8 @@ import { DocumentNode, print } from 'graphql';
 import { getSdk } from './generated/graphql';
 import { sessionStorage } from './sessions';
 
-const DEMO_API_URL = 'https://readonlydemo.vendure.io/shop-api';
-const API_URL =
-    typeof process !== 'undefined'
-        ? process.env.VENDURE_API_URL ?? DEMO_API_URL
-        : DEMO_API_URL;
+const API_URL = 'https://vendure.intergate.io/shop-api';
+const API_CHANNEL_TOKEN = '8ktnig6ln4g09msv87j';
 
 export interface QueryOptions {
     request: Request;
@@ -38,6 +35,7 @@ async function sendQuery<Response, Variables = {}>(options: {
         if (token) {
             headers.append('Authorization', `Bearer ${token}`);
         }
+        headers.append('vendure-token', API_CHANNEL_TOKEN);
     }
 
     return fetch(API_URL, {
