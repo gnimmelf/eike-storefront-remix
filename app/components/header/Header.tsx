@@ -27,13 +27,13 @@ export function Header({
                 <div className="max-w-6xl mx-2 md:mx-auto flex items-center justify-between">
                     <div>
                         <p className="hidden sm:block">
-                            Exclusive: Get your own{' '}
+                            Eike Studio:{' '}
                             <a
-                                href="https://github.com/vendure-ecommerce/storefront-remix-starter"
+                                href="https://eikestudio.no"
                                 target="_blank"
                                 className="underline"
                             >
-                                FREE storefront starter kit
+                                Interiørplanlegging
                             </a>
                         </p>
                     </div>

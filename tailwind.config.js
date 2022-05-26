@@ -13,8 +13,8 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: colors.sky,
-                secondary: colors.emerald,
+                primary: colors.amber,
+                secondary: colors.green,
             },
             animation: {
                 dropIn: 'dropIn 0.2s ease-out',

@@ -900,10 +900,6 @@ select {
   display: block;
 }
 
-#app .inline {
-  display: inline;
-}
-
 #app .flex {
   display: flex;
 }
@@ -1350,7 +1346,7 @@ select {
 
 #app .border-primary-500 {
   --tw-border-opacity: 1;
-  border-color: rgb(14 165 233 / var(--tw-border-opacity));
+  border-color: rgb(245 158 11 / var(--tw-border-opacity));
 }
 
 #app .border-slate-200 {
@@ -1365,22 +1361,12 @@ select {
 
 #app .bg-primary-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(186 230 253 / var(--tw-bg-opacity));
+  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
 }
 
 #app .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
-#app .bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-#app .bg-zinc-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(39 39 42 / var(--tw-bg-opacity));
 }
 
 #app .bg-white {
@@ -1395,7 +1381,7 @@ select {
 
 #app .bg-primary-600 {
   --tw-bg-opacity: 1;
-  background-color: rgb(2 132 199 / var(--tw-bg-opacity));
+  background-color: rgb(217 119 6 / var(--tw-bg-opacity));
 }
 
 #app .bg-gray-500 {
@@ -1406,11 +1392,6 @@ select {
 #app .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-#app .bg-primary-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
 }
 
 #app .bg-zinc-100 {
@@ -1453,10 +1434,6 @@ select {
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
-#app .bg-opacity-0 {
-  --tw-bg-opacity: 0;
-}
-
 #app .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
 }
@@ -1469,26 +1446,12 @@ select {
   --tw-bg-opacity: 0.2;
 }
 
-#app .bg-gradient-to-br {
-  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
-}
-
-#app .bg-gradient-to-r {
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
 #app .bg-gradient-to-t {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
 
-#app .from-zinc-400 {
-  --tw-gradient-from: #a1a1aa;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(161 161 170 / 0));
-}
-
-#app .from-yellow-600 {
-  --tw-gradient-from: #ca8a04;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(202 138 4 / 0));
+#app .bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
 #app .from-gray-800 {
@@ -1501,25 +1464,8 @@ select {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(63 63 70 / 0));
 }
 
-#app .via-red-500 {
-  --tw-gradient-stops: var(--tw-gradient-from), #ef4444, var(--tw-gradient-to, rgb(239 68 68 / 0));
-}
-
-#app .to-black {
-  --tw-gradient-to: #000;
-}
-
-#app .to-blue-600 {
-  --tw-gradient-to: #2563eb;
-}
-
 #app .to-gray-900 {
   --tw-gradient-to: #111827;
-}
-
-#app .bg-clip-text {
-  -webkit-background-clip: text;
-          background-clip: text;
 }
 
 #app .object-cover {
@@ -1538,10 +1484,6 @@ select {
 
 #app .p-2 {
   padding: 0.5rem;
-}
-
-#app .p-0 {
-  padding: 0px;
 }
 
 #app .p-1 {
@@ -1731,14 +1673,14 @@ select {
   line-height: 1.75rem;
 }
 
-#app .text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
 #app .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+#app .text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 #app .text-3xl {
@@ -1822,12 +1764,12 @@ select {
 
 #app .text-primary-800 {
   --tw-text-opacity: 1;
-  color: rgb(7 89 133 / var(--tw-text-opacity));
+  color: rgb(146 64 14 / var(--tw-text-opacity));
 }
 
 #app .text-primary-600 {
   --tw-text-opacity: 1;
-  color: rgb(2 132 199 / var(--tw-text-opacity));
+  color: rgb(217 119 6 / var(--tw-text-opacity));
 }
 
 #app .text-gray-900 {
@@ -1835,28 +1777,9 @@ select {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-#app .text-transparent {
-  color: transparent;
-}
-
 #app .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-#app .text-blue-300 {
-  --tw-text-opacity: 1;
-  color: rgb(147 197 253 / var(--tw-text-opacity));
-}
-
-#app .text-red-300 {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity));
-}
-
-#app .text-primary-200 {
-  --tw-text-opacity: 1;
-  color: rgb(186 230 253 / var(--tw-text-opacity));
 }
 
 #app .text-gray-600 {
@@ -1929,25 +1852,6 @@ select {
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
 }
 
-#app .placeholder-gray-500::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-placeholder-opacity));
-}
-
-#app .placeholder-gray-500:-ms-input-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-placeholder-opacity));
-}
-
-#app .placeholder-gray-500::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-placeholder-opacity));
-}
-
-#app .opacity-50 {
-  opacity: 0.5;
-}
-
 #app .opacity-0 {
   opacity: 0;
 }
@@ -1956,8 +1860,8 @@ select {
   opacity: 1;
 }
 
-#app .mix-blend-darken {
-  mix-blend-mode: darken;
+#app .opacity-50 {
+  opacity: 0.5;
 }
 
 #app .shadow {
@@ -1998,7 +1902,7 @@ select {
 
 #app .ring-primary-500 {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(14 165 233 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(245 158 11 / var(--tw-ring-opacity));
 }
 
 #app .filter {
@@ -2041,12 +1945,7 @@ select {
 
 #app .hover\:bg-primary-700:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
-}
-
-#app .hover\:bg-primary-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(2 132 199 / var(--tw-bg-opacity));
+  background-color: rgb(180 83 9 / var(--tw-bg-opacity));
 }
 
 #app .hover\:bg-green-700:hover {
@@ -2071,22 +1970,7 @@ select {
 
 #app .hover\:text-primary-500:hover {
   --tw-text-opacity: 1;
-  color: rgb(14 165 233 / var(--tw-text-opacity));
-}
-
-#app .hover\:text-blue-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-
-#app .hover\:text-red-500:hover {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-#app .hover\:text-primary-400:hover {
-  --tw-text-opacity: 1;
-  color: rgb(56 189 248 / var(--tw-text-opacity));
+  color: rgb(245 158 11 / var(--tw-text-opacity));
 }
 
 #app .hover\:text-gray-600:hover {
@@ -2101,7 +1985,7 @@ select {
 
 #app .hover\:text-primary-800:hover {
   --tw-text-opacity: 1;
-  color: rgb(7 89 133 / var(--tw-text-opacity));
+  color: rgb(146 64 14 / var(--tw-text-opacity));
 }
 
 #app .hover\:opacity-75:hover {
@@ -2110,27 +1994,7 @@ select {
 
 #app .focus\:border-primary-500:focus {
   --tw-border-opacity: 1;
-  border-color: rgb(14 165 233 / var(--tw-border-opacity));
-}
-
-#app .focus\:border-white:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-#app .focus\:placeholder-gray-400:focus::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-placeholder-opacity));
-}
-
-#app .focus\:placeholder-gray-400:focus:-ms-input-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-placeholder-opacity));
-}
-
-#app .focus\:placeholder-gray-400:focus::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-placeholder-opacity));
+  border-color: rgb(245 158 11 / var(--tw-border-opacity));
 }
 
 #app .focus\:outline-none:focus {
@@ -2152,20 +2016,11 @@ select {
 
 #app .focus\:ring-primary-500:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(14 165 233 / var(--tw-ring-opacity));
-}
-
-#app .focus\:ring-white:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(245 158 11 / var(--tw-ring-opacity));
 }
 
 #app .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
-}
-
-#app .focus\:ring-offset-gray-800:focus {
-  --tw-ring-offset-color: #1f2937;
 }
 
 #app .focus\:ring-offset-gray-50:focus {
@@ -2195,24 +2050,12 @@ select {
     margin-left: 1.5rem;
   }
 
-  #app .sm\:mt-0 {
-    margin-top: 0px;
-  }
-
-  #app .sm\:ml-3 {
-    margin-left: 0.75rem;
-  }
-
   #app .sm\:mt-16 {
     margin-top: 4rem;
   }
 
   #app .sm\:block {
     display: block;
-  }
-
-  #app .sm\:flex {
-    display: flex;
   }
 
   #app .sm\:hidden {
@@ -2237,10 +2080,6 @@ select {
 
   #app .sm\:max-w-none {
     max-width: none;
-  }
-
-  #app .sm\:flex-shrink-0 {
-    flex-shrink: 0;
   }
 
   #app .sm\:grid-cols-5 {
