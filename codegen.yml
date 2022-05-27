@@ -1,14 +1,14 @@
 overwrite: true
-schema: "http://localhost:3001/shop-api"
+schema: 'https://vendure.intergate.io/shop-api'
 documents:
-  - "app/**/*.{ts,tsx}"
-  - "!app/generated/*"
+    - 'app/**/*.{ts,tsx}'
+    - '!app/generated/*'
 generates:
-  app/generated/graphql.ts:
-    plugins:
-      - typescript
-      - typescript-operations
-      - typescript-generic-sdk
-  app/generated/schema.graphql:
-    plugins:
-      - schema-ast
+    app/generated/graphql.ts:
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-generic-sdk
+    app/generated/schema.graphql:
+        plugins:
+            - schema-ast

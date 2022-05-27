@@ -58,7 +58,7 @@ export const detailedProductFragment = gql`
             sku
             stockLevel
             assets {
-                source
+                id
                 preview
             }
         }

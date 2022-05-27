@@ -22,7 +22,7 @@ import { sessionStorage } from '~/sessions';
 import { ErrorCode, ErrorResult } from '~/generated/graphql';
 import Alert from '~/components/Alert';
 import { StockLevelLabel } from '~/components/products/StockLevelLabel';
-import TopReviews from '~/components/products/TopReviews';
+import { AssetPicker } from '~/components/products/AssetPicker';
 
 export type ProductLoaderData = {
     product: Awaited<ReturnType<typeof getProductBySlug>>['product'];
@@ -76,10 +76,14 @@ export default function ProductSlug() {
     const [selectedVariantId, setSelectedVariantId] = useState(
         product.variants[0].id,
     );
+
+    const [selectedAsset, setSelectedAsset] = useState(product.featuredAsset);
+
     const transition = useTransition();
     const selectedVariant = product.variants.find(
         (v) => v.id === selectedVariantId,
     );
+
     if (!selectedVariant) {
         setSelectedVariantId(product.variants[0].id);
     }
@@ -93,7 +97,7 @@ export default function ProductSlug() {
         (fv) => fv.facet.code === 'brand',
     )?.name;
 
-    console.log('selectedVariant', selectedVariant);
+    console.log('ProductSlug', { product, selectedAsset });
 
     return (
         <div>
@@ -112,15 +116,17 @@ export default function ProductSlug() {
                 <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">
                     {/* Image gallery */}
                     <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                        <span className="rounded-md overflow-hidden">
-                            <div className="w-full h-full object-center object-cover rounded-lg">
+                        <AssetPicker
+                            assets={product.assets}
+                            setSelectedAsset={setSelectedAsset}
+                            selectedAssetId={selectedAsset.id}
+                        />
+                        <span className="overflow-hidden">
+                            <div className="w-full h-full object-center object-cover aspect-square">
                                 <img
-                                    src={
-                                        product.featuredAsset?.preview +
-                                        '?w=800'
-                                    }
+                                    src={selectedAsset?.preview + '?w=800'}
                                     alt={product.name}
-                                    className="w-full h-full object-center object-cover rounded-lg"
+                                    className="w-full h-full object-center object-cover"
                                 />
                             </div>
                         </span>
@@ -160,9 +166,14 @@ export default function ProductSlug() {
                                         id="productVariant"
                                         value={selectedVariantId}
                                         name="variantId"
-                                        onChange={(e) =>
-                                            setSelectedVariantId(e.target.value)
-                                        }
+                                        onChange={(e) => {
+                                            setSelectedAsset(
+                                                product.featuredAsset,
+                                            );
+                                            setSelectedVariantId(
+                                                e.target.value,
+                                            );
+                                        }}
                                     >
                                         {product.variants.map((variant) => (
                                             <option
@@ -181,6 +192,14 @@ export default function ProductSlug() {
                                     value={selectedVariantId}
                                 ></input>
                             )}
+
+                            <div className="mt-10 sm:flex-row sm:items-center">
+                                <AssetPicker
+                                    assets={selectedVariant.assets}
+                                    setSelectedAsset={setSelectedAsset}
+                                    selectedAssetId={selectedAsset.id}
+                                />
+                            </div>
 
                             <div className="mt-10 flex flex-col sm:flex-row sm:items-center">
                                 <p className="text-3xl text-gray-900 mr-4">
@@ -202,10 +221,9 @@ export default function ProductSlug() {
                                                 : qtyInCart === 0
                                                 ? 'bg-primary-600 hover:bg-primary-700'
                                                 : 'bg-green-600 active:bg-green-700 hover:bg-green-700'
-                                        }
-                                     transition-colors border border-transparent rounded-md py-3 px-8 flex items-center
-                                      justify-center text-base font-medium text-white focus:outline-none
-                                      focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-primary-500 sm:w-full`}
+                                        } transition-colors border border-transparent rounded-md py-3 px-8 flex items-center
+                                        justify-center text-base font-medium text-white focus:outline-none
+                                        focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-primary-500 sm:w-full`}
                                         disabled={transition.state !== 'idle'}
                                     >
                                         {qtyInCart ? (
@@ -216,19 +234,6 @@ export default function ProductSlug() {
                                         ) : (
                                             `Add to cart`
                                         )}
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="ml-4 py-3 px-3 rounded-md flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500"
-                                    >
-                                        <HeartIcon
-                                            className="h-6 w-6 flex-shrink-0"
-                                            aria-hidden="true"
-                                        />
-                                        <span className="sr-only">
-                                            Add to favorites
-                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -245,38 +250,10 @@ export default function ProductSlug() {
                                     <Alert message={addItemToOrderError} />
                                 </div>
                             )}
-
-                            <section className="mt-12 pt-12 border-t text-xs">
-                                <h3 className="text-gray-600 font-bold mb-2">
-                                    Shipping & Returns
-                                </h3>
-                                <div className="text-gray-500 space-y-1">
-                                    <p>
-                                        Standard shipping: 3 - 5 working days.
-                                        Express shipping: 1 - 3 working days.
-                                    </p>
-                                    <p>
-                                        Shipping costs depend on delivery
-                                        address and will be calculated during
-                                        checkout.
-                                    </p>
-                                    <p>
-                                        Returns are subject to terms. Please see
-                                        the{' '}
-                                        <span className="underline">
-                                            returns page
-                                        </span>{' '}
-                                        for further information.
-                                    </p>
-                                </div>
-                            </section>
                         </activeOrderFetcher.Form>
                     </div>
                 </div>
             </div>
-            {/* <div className="mt-24">
-                <TopReviews></TopReviews>
-            </div> */}
         </div>
     );
 }
