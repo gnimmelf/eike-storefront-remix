@@ -1,5 +1,5 @@
 import { RootLoaderData } from '~/root';
-import { Link } from '@remix-run/react';
+import { LinkLight as Link } from '~/components/links/LinkLight';
 
 const navigation = {
     support: [
@@ -10,7 +10,7 @@ const navigation = {
     ],
     company: [
         { name: 'About', href: '#' },
-        { name: 'Blog', href: '#' },
+        { name: 'Blog', href: 'https://eikestudio.no' },
         { name: 'Corporate responsibility', href: '#' },
         { name: 'Press', href: '#' },
     ],
@@ -23,7 +23,7 @@ export default function Footer({
 }) {
     return (
         <footer
-            className="mt-24 border-t bg-gray-50"
+            className="mt-24 border-t bg-brand-taupe text-brand-white"
             aria-labelledby="footer-heading"
         >
             <h2 id="footer-heading" className="sr-only">
@@ -34,14 +34,14 @@ export default function Footer({
                     <div className="grid grid-cols-2 gap-8 xl:col-span-2">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+                                <h3 className="text-sm font-semibold tracking-wider uppercase">
                                     Shop
                                 </h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {collections.map((collection) => (
                                         <li key={collection.id}>
                                             <Link
-                                                className="text-base text-gray-500 hover:text-gray-600"
+                                                className=""
                                                 to={
                                                     '/collections/' +
                                                     collection.slug
@@ -56,7 +56,7 @@ export default function Footer({
                                 </ul>
                             </div>
                             <div className="mt-12 md:mt-0">
-                                <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+                                <h3 className="text-sm font-semibold tracking-wider uppercase">
                                     Support
                                 </h3>
                                 <ul role="list" className="mt-4 space-y-4">
@@ -64,7 +64,7 @@ export default function Footer({
                                         <li key={item.name}>
                                             <a
                                                 href={item.href}
-                                                className="text-base text-gray-500 hover:text-gray-600"
+                                                className="text-base text-brand-chardon hover:text-brand-chardon_hover"
                                             >
                                                 {item.name}
                                             </a>
@@ -75,7 +75,7 @@ export default function Footer({
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
+                                <h3 className="text-sm font-semibold  tracking-wider uppercase">
                                     Company
                                 </h3>
                                 <ul role="list" className="mt-4 space-y-4">
@@ -83,7 +83,7 @@ export default function Footer({
                                         <li key={item.name}>
                                             <a
                                                 href={item.href}
-                                                className="text-base text-gray-500 hover:text-gray-600"
+                                                className="text-base text-brand-chardon hover:text-brand-chardon_hover"
                                             >
                                                 {item.name}
                                             </a>

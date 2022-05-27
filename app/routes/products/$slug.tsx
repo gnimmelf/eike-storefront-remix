@@ -93,18 +93,22 @@ export default function ProductSlug() {
         (fv) => fv.facet.code === 'brand',
     )?.name;
 
+    console.log('selectedVariant', selectedVariant);
+
     return (
         <div>
-            <div className="max-w-6xl mx-auto px-4">
-                <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-gray-900 my-8">
+            <div className="max-w-6xl mx-auto px-4 text-brand-pohutukawa">
+                <h2 className="text-3xl sm:text-5xl font-light tracking-tight my-8">
                     {product.name}
                 </h2>
+
                 <Breadcrumbs
                     items={
                         product.collections[product.collections.length - 1]
                             ?.breadcrumbs ?? []
                     }
                 ></Breadcrumbs>
+
                 <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">
                     {/* Image gallery */}
                     <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">
@@ -128,7 +132,7 @@ export default function ProductSlug() {
                             <h3 className="sr-only">Description</h3>
 
                             <div
-                                className="text-base text-gray-700"
+                                className="text-base"
                                 dangerouslySetInnerHTML={{
                                     __html: product.description,
                                 }}
@@ -147,7 +151,7 @@ export default function ProductSlug() {
                                 <div className="mt-4">
                                     <label
                                         htmlFor="option"
-                                        className="block text-sm font-medium text-gray-700"
+                                        className="block text-sm font-medium"
                                     >
                                         Select option
                                     </label>
@@ -200,7 +204,7 @@ export default function ProductSlug() {
                                                 : 'bg-green-600 active:bg-green-700 hover:bg-green-700'
                                         }
                                      transition-colors border border-transparent rounded-md py-3 px-8 flex items-center
-                                      justify-center text-base font-medium text-white focus:outline-none 
+                                      justify-center text-base font-medium text-white focus:outline-none
                                       focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-primary-500 sm:w-full`}
                                         disabled={transition.state !== 'idle'}
                                     >
@@ -270,9 +274,9 @@ export default function ProductSlug() {
                     </div>
                 </div>
             </div>
-            <div className="mt-24">
+            {/* <div className="mt-24">
                 <TopReviews></TopReviews>
-            </div>
+            </div> */}
         </div>
     );
 }

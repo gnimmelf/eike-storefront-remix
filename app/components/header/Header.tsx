@@ -6,6 +6,8 @@ import { UserIcon } from '@heroicons/react/solid';
 import { useScrollingUp } from '~/utils/use-scrolling-up';
 import { classNames } from '~/utils/class-names';
 
+import { LinkLight } from '~/components/links/LinkLight';
+
 export function Header({
     onCartIconClick,
     cartQuantity,
@@ -20,7 +22,7 @@ export function Header({
         <header
             className={classNames(
                 isScrollingUp ? 'sticky top-0 z-10 animate-dropIn' : '',
-                'bg-gradient-to-r from-zinc-700 to-gray-900 shadow-lg transform shadow-xl',
+                'bg-brand-taupe',
             )}
         >
             {/* <div className="bg-zinc-100 text-gray-600 shadow-inner text-center text-sm py-2 px-2 xl:px-0">
@@ -52,7 +54,7 @@ export function Header({
                 <h1 className="text-white w-10">
                     <Link to="/">
                         <img
-                            src="/cube-logo-small.webp"
+                            src="/cube-logo.png"
                             width={40}
                             height={31}
                             alt="Vendure logo"
@@ -61,14 +63,14 @@ export function Header({
                 </h1>
                 <div className="flex space-x-4 hidden sm:block">
                     {data.collections.map((collection) => (
-                        <Link
-                            className="text-sm md:text-base text-gray-200 hover:text-white"
+                        <LinkLight
+                            className="text-sm md:text-base"
                             to={'/collections/' + collection.slug}
                             prefetch="intent"
                             key={collection.id}
                         >
                             {collection.name}
-                        </Link>
+                        </LinkLight>
                     ))}
                 </div>
                 <div className="flex-1 md:pr-8">

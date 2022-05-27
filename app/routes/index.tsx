@@ -2,7 +2,6 @@ import React from 'react';
 import { useLoaderData } from '@remix-run/react';
 import { getCollections } from '~/providers/collections/collections';
 import { CollectionCard } from '~/components/collections/CollectionCard';
-import { BookOpenIcon } from '@heroicons/react/solid';
 
 export async function loader({ request }: any) {
     const collections = await getCollections(request);
@@ -35,9 +34,11 @@ export default function Index() {
                 </div>
                 <div aria-hidden="true" className="absolute inset-0" />
                 <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0">
-                    <p className="mt-4 text-2xl text-white">Butikk</p>
+                    <p className="mt-4 text-2xl text-brand-pohutukawa">
+                        Butikk
+                    </p>
                     <div className="relative">
-                        <h1 className="text-6xl font-extrabold tracking-normal lg:text-6xl text-white">
+                        <h1 className="text-6xl font-extrabold tracking-normal lg:text-6xl text-brand-pohutukawa">
                             Eike Studio
                         </h1>
                     </div>
@@ -51,7 +52,7 @@ export default function Index() {
                 <div className="px-4 sm:px-6 lg:px-8 xl:px-0">
                     <h2
                         id="category-heading"
-                        className="text-2xl font-light tracking-tight text-gray-900"
+                        className="text-2xl font-light tracking-tight text-brand-pohutukawa"
                     >
                         Shop by Category
                     </h2>

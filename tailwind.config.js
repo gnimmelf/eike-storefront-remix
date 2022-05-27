@@ -15,6 +15,21 @@ module.exports = {
             colors: {
                 primary: colors.amber,
                 secondary: colors.green,
+                brand: {
+                    // Text
+                    'pohutukawa': '#5a1414ff',
+                    'harvest': '#877028ff',
+                    'chardon': '#f8ede2ff',
+                    // :hover
+                    'pohutukawa_hover': '#7C5418',
+                    'harvest_hover': '#9B7C2E',
+                    'chardon_hover': '#fff',
+                    // Backgrounds
+                    'taupe': '#91625cff',
+                    'whiskey': '#cf8c53ff',
+                    'shell': '#d0b3a7ff',
+                    'solitude': '#d3dce6'
+                }
             },
             animation: {
                 dropIn: 'dropIn 0.2s ease-out',

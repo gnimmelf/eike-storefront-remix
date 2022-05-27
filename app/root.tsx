@@ -107,7 +107,7 @@ export default function App() {
                 <Meta />
                 <Links />
             </head>
-            <body>
+            <body className="bg-brand-shell">
                 <Header
                     onCartIconClick={() => setOpen(!open)}
                     cartQuantity={activeOrder?.totalQuantity ?? 0}
