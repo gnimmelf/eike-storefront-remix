@@ -114,11 +114,6 @@ export default function ProductSlug() {
                 <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-8">
                     {/* Image gallery */}
                     <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-                        <AssetPicker
-                            assets={product.assets}
-                            setSelectedAsset={setSelectedAsset}
-                            selectedAssetId={selectedAsset.id}
-                        />
                         <span className="overflow-hidden">
                             <div className="w-full h-full object-center object-cover aspect-square">
                                 <img
@@ -128,6 +123,11 @@ export default function ProductSlug() {
                                 />
                             </div>
                         </span>
+                        <AssetPicker
+                            assets={product.assets}
+                            setSelectedAsset={setSelectedAsset}
+                            selectedAssetId={selectedAsset.id}
+                        />
                     </div>
 
                     {/* Product info */}
