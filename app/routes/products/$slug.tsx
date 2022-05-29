@@ -81,7 +81,7 @@ export default function ProductSlug() {
 
     const transition = useTransition();
     const selectedVariant = product.variants.find(
-        (v) => v.id === selectedVariantId,
+        ({ id }) => id === selectedVariantId,
     );
 
     if (!selectedVariant) {
@@ -165,12 +165,14 @@ export default function ProductSlug() {
                                         value={selectedVariantId}
                                         name="variantId"
                                         onChange={(e) => {
-                                            setSelectedAsset(
-                                                product.featuredAsset,
-                                            );
-                                            setSelectedVariantId(
-                                                e.target.value,
-                                            );
+                                            const variantId = e.target.value;
+                                            setSelectedVariantId(variantId);
+                                            const { assets } =
+                                                product.variants.find(
+                                                    ({ id }) =>
+                                                        id === variantId,
+                                                );
+                                            setSelectedAsset(assets[0]);
                                         }}
                                     >
                                         {product.variants.map((variant) => (
