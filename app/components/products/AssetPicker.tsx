@@ -13,15 +13,17 @@ const AssetPicker = ({
     };
     return (
         <div className="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto py-2">
-            {assets.map(({ id, preview }) => {
+            {assets.map((asset) => {
+                const { id, preview } = asset;
                 const key = `${altPrefix}-${id}`;
                 return (
                     <span
-                        onClick={() => setSelectedAsset({ id, preview })}
+                        onClick={() => setSelectedAsset(asset)}
                         className={[
                             'cursor-pointer',
                             'snap-center shrink-0',
                             'border-4',
+                            'overflow-hidden rounded-lg',
                             selectedAssetId === id
                                 ? 'border-primary-700'
                                 : 'border-brand-harvest',

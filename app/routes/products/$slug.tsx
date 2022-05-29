@@ -97,8 +97,6 @@ export default function ProductSlug() {
         (fv) => fv.facet.code === 'brand',
     )?.name;
 
-    console.log('ProductSlug', { product, selectedAsset });
-
     return (
         <div>
             <div className="max-w-6xl mx-auto px-4 text-brand-pohutukawa">
@@ -113,7 +111,7 @@ export default function ProductSlug() {
                     }
                 ></Breadcrumbs>
 
-                <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-12">
+                <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start mt-4 md:mt-8">
                     {/* Image gallery */}
                     <div className="w-full max-w-2xl mx-auto sm:block lg:max-w-none">
                         <AssetPicker
@@ -126,7 +124,7 @@ export default function ProductSlug() {
                                 <img
                                     src={selectedAsset?.preview + '?w=800'}
                                     alt={product.name}
-                                    className="w-full h-full object-center object-cover"
+                                    className="w-full h-full object-center object-cover rounded-lg"
                                 />
                             </div>
                         </span>
@@ -159,7 +157,7 @@ export default function ProductSlug() {
                                         htmlFor="option"
                                         className="block text-sm font-medium"
                                     >
-                                        Select option
+                                        Velg variant
                                     </label>
                                     <select
                                         className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md"
@@ -193,7 +191,7 @@ export default function ProductSlug() {
                                 ></input>
                             )}
 
-                            <div className="mt-10 sm:flex-row sm:items-center">
+                            <div className="mt-4">
                                 <AssetPicker
                                     assets={selectedVariant.assets}
                                     setSelectedAsset={setSelectedAsset}

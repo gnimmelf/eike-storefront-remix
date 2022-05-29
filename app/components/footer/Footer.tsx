@@ -3,16 +3,17 @@ import { LinkLight as Link } from '~/components/links/LinkLight';
 
 const navigation = {
     support: [
-        { name: 'Help', href: '#' },
-        { name: 'Track order', href: '#' },
-        { name: 'Shipping', href: '#' },
-        { name: 'Returns', href: '#' },
+        {
+            name: 'Vedlikehold',
+            href: 'https://eikestudio.no/butikk-vedlikehold-av-produkter/',
+        },
+        {
+            name: 'Frakt og retur',
+            href: 'https://eikestudio.no/butikk-frakt-og-retur/',
+        },
     ],
     company: [
-        { name: 'About', href: '#' },
-        { name: 'Blog', href: 'https://eikestudio.no' },
-        { name: 'Corporate responsibility', href: '#' },
-        { name: 'Press', href: '#' },
+        { name: 'About', href: 'https://eikestudio.no/eike-okologiske/' },
     ],
 };
 
@@ -35,7 +36,7 @@ export default function Footer({
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
                                 <h3 className="text-sm font-semibold tracking-wider uppercase">
-                                    Shop
+                                    Butikk
                                 </h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {collections.map((collection) => (
@@ -57,7 +58,7 @@ export default function Footer({
                             </div>
                             <div className="mt-12 md:mt-0">
                                 <h3 className="text-sm font-semibold tracking-wider uppercase">
-                                    Support
+                                    Kundeservice
                                 </h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {navigation.support.map((item) => (
@@ -76,7 +77,7 @@ export default function Footer({
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
                                 <h3 className="text-sm font-semibold  tracking-wider uppercase">
-                                    Company
+                                    Eike Studio
                                 </h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {navigation.company.map((item) => (
