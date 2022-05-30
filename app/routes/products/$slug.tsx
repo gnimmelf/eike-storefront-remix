@@ -3,17 +3,15 @@ import {
     MetaFunction,
     json,
 } from '@remix-run/server-runtime';
-import { useState } from 'react';
-import { Price } from '~/components/products/Price';
+import { useState, useEffect } from 'react';
 import { getProductBySlug } from '~/providers/products/products';
 import {
     ShouldReloadFunction,
     useCatch,
     useLoaderData,
     useOutletContext,
-    useTransition,
 } from '@remix-run/react';
-import { CheckIcon, HeartIcon, PhotographIcon } from '@heroicons/react/solid';
+import { PhotographIcon } from '@heroicons/react/solid';
 import { Breadcrumbs } from '~/components/Breadcrumbs';
 import { APP_META_TITLE } from '~/constants';
 import { CartLoaderData } from '~/routes/api/active-order';
@@ -21,8 +19,8 @@ import { FetcherWithComponents } from '~/types';
 import { sessionStorage } from '~/sessions';
 import { ErrorCode, ErrorResult } from '~/generated/graphql';
 import Alert from '~/components/Alert';
-import { StockLevelLabel } from '~/components/products/StockLevelLabel';
 import { AssetPicker } from '~/components/products/AssetPicker';
+import { VariantCartControls } from '~/components/products/VariantCartControls';
 
 export type ProductLoaderData = {
     product: Awaited<ReturnType<typeof getProductBySlug>>['product'];
@@ -73,26 +71,29 @@ export default function ProductSlug() {
         return <div>Product not found!</div>;
     }
 
-    const [selectedVariantId, setSelectedVariantId] = useState(
-        product.variants[0].id,
-    );
-
+    const [selectedVariant, _setSelectedVariant] = useState(null);
     const [selectedAsset, setSelectedAsset] = useState(product.featuredAsset);
 
-    const transition = useTransition();
-    const selectedVariant = product.variants.find(
-        ({ id }) => id === selectedVariantId,
-    );
-
-    if (!selectedVariant) {
-        setSelectedVariantId(product.variants[0].id);
+    function setSelectedVariantById(selectedVariantId) {
+        const variantId = selectedVariantId ?? product.variants[0].id;
+        const variant = product.variants.find(({ id }) => id === variantId);
+        _setSelectedVariant(variant);
+        if (variant?.assets?.length) {
+            setSelectedAsset(variant.assets[0]);
+        }
     }
+
+    useEffect(() => {
+        if (product.variants.length === 1) {
+            setSelectedVariantById(product.variants[0].id);
+        }
+    }, []);
+
     const qtyInCart =
         activeOrder?.lines.find(
-            (l) => l.productVariant.id === selectedVariantId,
+            (l) => l.productVariant.id === selectedVariant?.id,
         )?.quantity ?? 0;
 
-    const asset = product.assets[0];
     const brandName = product.facetValues.find(
         (fv) => fv.facet.code === 'brand',
     )?.name;
@@ -151,30 +152,34 @@ export default function ProductSlug() {
                                 name="action"
                                 value="addItemToOrder"
                             />
-                            {1 < product.variants.length ? (
+                            {product.variants.length === 1 ? (
+                                <input
+                                    type="hidden"
+                                    name="variantId"
+                                    value={selectedVariant?.id ?? null}
+                                ></input>
+                            ) : (
                                 <div className="mt-4">
                                     <label
                                         htmlFor="option"
-                                        className="block text-sm font-medium"
+                                        className="block text-md font-bold"
                                     >
                                         Velg variant
                                     </label>
                                     <select
-                                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md"
+                                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-700 focus:border-primary-700 sm:text-sm rounded-md"
                                         id="productVariant"
-                                        value={selectedVariantId}
+                                        value={selectedVariant?.id || '--'}
                                         name="variantId"
                                         onChange={(e) => {
-                                            const variantId = e.target.value;
-                                            setSelectedVariantId(variantId);
-                                            const { assets } =
-                                                product.variants.find(
-                                                    ({ id }) =>
-                                                        id === variantId,
-                                                );
-                                            setSelectedAsset(assets[0]);
+                                            setSelectedVariantById(
+                                                e.target.value,
+                                            );
                                         }}
                                     >
+                                        <option key="--" value="--">
+                                            {'--'}
+                                        </option>
                                         {product.variants.map((variant) => (
                                             <option
                                                 key={variant.id}
@@ -185,66 +190,24 @@ export default function ProductSlug() {
                                         ))}
                                     </select>
                                 </div>
-                            ) : (
-                                <input
-                                    type="hidden"
-                                    name="variantId"
-                                    value={selectedVariantId}
-                                ></input>
                             )}
 
                             <div className="mt-4">
                                 <AssetPicker
-                                    assets={selectedVariant.assets}
+                                    assets={selectedVariant?.assets}
                                     setSelectedAsset={setSelectedAsset}
-                                    selectedAssetId={selectedAsset.id}
+                                    selectedAssetId={selectedAsset?.id}
                                 />
                             </div>
 
-                            <div className="mt-10 flex flex-col sm:flex-row sm:items-center">
-                                <p className="text-3xl text-gray-900 mr-4">
-                                    <Price
-                                        priceWithTax={
-                                            selectedVariant?.priceWithTax
-                                        }
-                                        currencyCode={
-                                            selectedVariant?.currencyCode
-                                        }
-                                    ></Price>
-                                </p>
-                                <div className="flex sm:flex-col1 align-baseline">
-                                    <button
-                                        type="submit"
-                                        className={`max-w-xs flex-1 ${
-                                            transition.state !== 'idle'
-                                                ? 'bg-gray-400'
-                                                : qtyInCart === 0
-                                                ? 'bg-primary-600 hover:bg-primary-700'
-                                                : 'bg-green-600 active:bg-green-700 hover:bg-green-700'
-                                        } transition-colors border border-transparent rounded-md py-3 px-8 flex items-center
-                                        justify-center text-base font-medium text-white focus:outline-none
-                                        focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-primary-500 sm:w-full`}
-                                        disabled={transition.state !== 'idle'}
-                                    >
-                                        {qtyInCart ? (
-                                            <span className="flex items-center">
-                                                <CheckIcon className="w-5 h-5 mr-1" />{' '}
-                                                {qtyInCart} in cart
-                                            </span>
-                                        ) : (
-                                            `Add to cart`
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="mt-2 flex items-center space-x-2">
-                                <span className="text-gray-500">
-                                    {selectedVariant?.sku}
-                                </span>
-                                <StockLevelLabel
-                                    stockLevel={selectedVariant?.stockLevel}
+                            <div className="mt-4">
+                                <VariantCartControls
+                                    transition={activeOrderFetcher}
+                                    variant={selectedVariant}
+                                    qtyInCart={qtyInCart}
                                 />
                             </div>
+
                             {addItemToOrderError && (
                                 <div className="mt-4">
                                     <Alert message={addItemToOrderError} />

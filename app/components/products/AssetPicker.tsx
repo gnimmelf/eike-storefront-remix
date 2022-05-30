@@ -11,7 +11,8 @@ const AssetPicker = ({
         height: `${assetPixelHeight}px`,
         width: `${assetPixelHeight}px`,
     };
-    return (
+
+    return assets ? (
         <div className="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto py-2">
             {assets.map((asset) => {
                 const { id, preview } = asset;
@@ -40,7 +41,7 @@ const AssetPicker = ({
                 );
             })}
         </div>
-    );
+    ) : null;
 };
 
 export { AssetPicker };
