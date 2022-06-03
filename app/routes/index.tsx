@@ -3,6 +3,10 @@ import { useLoaderData } from '@remix-run/react';
 import { getCollections } from '~/providers/collections/collections';
 import { CollectionCard } from '~/components/collections/CollectionCard';
 
+const headerTextStyle = {
+    filter: 'drop-shadow(.5rem .5rem .5rem white)',
+};
+
 export async function loader({ request }: any) {
     const collections = await getCollections(request);
     return {
@@ -14,7 +18,6 @@ type LoaderData = Awaited<ReturnType<typeof loader>>;
 
 export default function Index() {
     const { collections } = useLoaderData<LoaderData>();
-    const headerImage = collections[0]?.featuredAsset?.preview;
     return (
         <>
             <div className="relative">
@@ -23,25 +26,29 @@ export default function Index() {
                     aria-hidden="true"
                     className="absolute inset-0 overflow-hidden"
                 >
-                    {headerImage && (
-                        <img
-                            className="absolute inset-0 w-full"
-                            src={headerImage + '?w=800'}
-                            alt="header"
-                        />
-                    )}
+                    <img
+                        className="absolute inset-0 w-full"
+                        src="/header-image.jpg"
+                        alt="header"
+                    />
                     <div className="absolute inset-0 " />
                 </div>
                 <div aria-hidden="true" className="absolute inset-0" />
                 <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0">
-                    <p className="mt-4 text-2xl text-brand-pohutukawa">
-                        Butikk
-                    </p>
                     <div className="relative">
-                        <h1 className="text-6xl font-extrabold tracking-normal lg:text-6xl text-brand-pohutukawa">
+                        <h1
+                            className="text-6xl font-extrabold tracking-normal lg:text-6xl text-brand-pohutukawa"
+                            style={headerTextStyle}
+                        >
                             Eike Studio
                         </h1>
                     </div>
+                    <p
+                        className="mt-4 text-2xl text-brand-pohutukawa"
+                        style={headerTextStyle}
+                    >
+                        Butikk
+                    </p>
                 </div>
             </div>
 
